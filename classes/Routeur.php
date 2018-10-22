@@ -14,9 +14,11 @@ class Routeur
                             ""                      => ["controller" => 'FrontEnd', 'method' => 'showHome'],
                             "home"                  => ["controller" => 'FrontEnd', 'method' => 'showHome'],
                             "contact"               => ["controller" => 'FrontEnd', 'method' => 'showContact'],
+                            "post"                  => ["controller" => 'FrontEnd', 'method' => 'showPost'],
                             "edit-post"             => ["controller" => 'BackEnd', 'method'  => 'editPost'],
                             "add-post"              => ["controller" => 'BackEnd', 'method'  => 'addPost'],
                             "delete-post"           => ["controller" => 'BackEnd', 'method'  => 'delPost'],
+
                         ];
 
     public function __construct($request)

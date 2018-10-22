@@ -15,5 +15,20 @@ class FrontEnd
         $myView = new View('contact');
         $myView->render();
     }
+
+    public function showPost($params)
+    {
+
+        extract($params);
+
+        $postManager = new PostManager();
+        $post = $postManager->find($id);
+
+        $commentManager = new CommentManager();
+        $comments = $commentManager->findAll($id);
+
+        $myView = new View('post');
+        $myView->render(array('post' => $post, 'comments' => $comments));
+    }
 }
 
