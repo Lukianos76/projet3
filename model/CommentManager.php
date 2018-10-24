@@ -33,8 +33,6 @@ class CommentManager
 
             $comments[] = $comment;
         }
-
-
         return $comments;
     }
 

@@ -4,8 +4,9 @@ class FrontEnd
 {
     public function showHome($params)
     {
-        $manager = new PostManager();
-        $posts = $manager->findAll();
+        $PostManager = new PostManager();
+        $posts = $PostManager->findAll();
+
 
         $myView = new View('home');
         $myView->render(array('posts' => $posts));
@@ -30,5 +31,6 @@ class FrontEnd
         $myView = new View('post');
         $myView->render(array('post' => $post, 'comments' => $comments));
     }
+
 }
 

@@ -18,7 +18,9 @@ class Routeur
                             "edit-post"             => ["controller" => 'BackEnd', 'method'  => 'editPost'],
                             "add-post"              => ["controller" => 'BackEnd', 'method'  => 'addPost'],
                             "delete-post"           => ["controller" => 'BackEnd', 'method'  => 'delPost'],
-
+                            "register"              => ["controller" => 'BackEnd', 'method'  => 'addUser'],
+                            "login"                 => ["controller" => 'BackEnd', 'method'  => 'login'],
+                            "disconnect"            => ["controller" => 'BackEnd', 'method'  => 'disconnect'],
                         ];
 
     public function __construct($request)
