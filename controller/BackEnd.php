@@ -112,6 +112,17 @@ class BackEnd
 
     }
 
+    public function reportComment($params)
+    {
+        extract($params);
+
+        $manager = new CommentManager();
+        $manager->report($comment);
+
+        $myView = new View();
+        $myView->redirect('post/id/'.$id);;
+    }
+
     public function login($params)
     {
         $errorMessage = NULL;

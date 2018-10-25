@@ -65,5 +65,27 @@ class CommentManager
         $req->execute();
     }
 
+    public function report($id)
+    {
+        $bdd = $this->bdd;
+
+        $query = "SELECT report FROM comments WHERE id = :id";
+
+        $req = $bdd->prepare($query);
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        $report = $req->fetch();
+        $report['report'] = $report['report'] + 1;
+
+
+        $query = "UPDATE comments SET report = :report WHERE id = :id";
+
+        $req = $bdd->prepare($query);
+
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
+        $req->bindValue(':report', $report['report'], PDO::PARAM_STR);
+
+        $req->execute();
+    }
 
 }

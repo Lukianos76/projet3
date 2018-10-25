@@ -34,6 +34,9 @@ endif ?>
         <?php if (((isset($_SESSION['id'])) && $_SESSION['pseudo'] === $comment->getAuthor()) || (isset($_SESSION['id']) && $_SESSION['administrator'] == 1)) :?>
             <a href="<?= HOST?>delete-comment/id/<?= $post->getId()?>/comment/<?= $comment->getId()?>">Effacer</a>
         <?php endif ?>
+        <?php if (isset($_SESSION['id'])) :?>
+            <a href="<?= HOST?>report-comment/id/<?= $post->getId()?>/comment/<?= $comment->getId()?>">Signaler</a>
+        <?php endif ?>
     <?php endforeach;?>
 <?php else : ?>
     <p>Aucun commentaire</p>
