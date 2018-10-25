@@ -37,11 +37,11 @@ class BackEnd
 
             $myView = new View();
             $myView->redirect('home');
+
         }
 
-        $post = new Post();
         $myView = new View('add');
-        $myView->render(array('post' => $post));
+        $myView->render();
     }
 
     public function delPost($params)
@@ -80,14 +80,42 @@ class BackEnd
             }
         }
 
-        $user = new User();
         $myView = new View('register');
-        $myView->render(array('user' => $user));
+        $myView->render();
+    }
+
+    public function addComment($params)
+    {
+        session_start();
+        extract($params);
+
+        if($params !== NULL)
+        {
+            $values = $_POST['values'];
+
+            $manager = new CommentManager();
+            $manager->create($values, $id);
+
+            $myView = new View();
+            $myView->redirect('post/id/'.$id);
+        }
+    }
+
+    public function delComment($params)
+    {
+        extract($params);
+        $manager = new CommentManager();
+        $manager->delete($comment);
+
+        $myView = new View();
+        $myView->redirect('post/id/'.$id);;
+
     }
 
     public function login($params)
     {
         $errorMessage = NULL;
+        extract($params);
 
         if ($params !== NULL)
         {
@@ -100,21 +128,43 @@ class BackEnd
 
             if($errorMessage !== NULL)
             {
-                $myView = new View('login');
-                $myView->render(array('errorMessage' => $errorMessage));
+                if(isset($id)){
+                    extract($params);
+
+                    $postManager = new PostManager();
+                    $post = $postManager->find($id);
+
+                    $commentManager = new CommentManager();
+                    $comments = $commentManager->findAll($id);
+
+                    $myView = new View('post');
+                    $myView->render(array('post' => $post, 'comments' => $comments, 'errorMessage' => $errorMessage));
+                }
+                else
+                {
+                    $myView = new View('login');
+                    $myView->render(array('errorMessage' => $errorMessage));
+                }
             }
             else
             {
                 $manager->login($values);
 
-                $myView = new View();
-                $myView->redirect('home');
+                if(isset($id)){
+                    $myView = new View();
+                    $myView->redirect('post/id/'.$id);;
+                }
+                else
+                {
+                    $myView = new View();
+                    $myView->redirect('home');
+                }
             }
         }
 
-        $user = new User();
+
         $myView = new View('login');
-        $myView->render(array('user' => $user));
+        $myView->render();
     }
 
     public function disconnect($params)

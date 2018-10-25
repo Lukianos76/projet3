@@ -18,6 +18,8 @@ class Routeur
                             "edit-post"             => ["controller" => 'BackEnd', 'method'  => 'editPost'],
                             "add-post"              => ["controller" => 'BackEnd', 'method'  => 'addPost'],
                             "delete-post"           => ["controller" => 'BackEnd', 'method'  => 'delPost'],
+                            "add-comment"           => ["controller" => 'BackEnd', 'method'  => 'addComment'],
+                            "delete-comment"           => ["controller" => 'BackEnd', 'method'  => 'delComment'],
                             "register"              => ["controller" => 'BackEnd', 'method'  => 'addUser'],
                             "login"                 => ["controller" => 'BackEnd', 'method'  => 'login'],
                             "disconnect"            => ["controller" => 'BackEnd', 'method'  => 'disconnect'],

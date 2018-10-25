@@ -23,8 +23,9 @@ class View
         include_once (VIEW.'_gabarit.php');
     }
 
-    public function redirect($routes)
+    public function redirect($routes, $params = array())
     {
+        extract($params);
         header("Location: ".HOST.$routes);
         exit;
     }

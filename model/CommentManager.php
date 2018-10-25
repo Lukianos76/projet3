@@ -33,7 +33,36 @@ class CommentManager
 
             $comments[] = $comment;
         }
-        return $comments;
+        if (isset($comments)) {
+            return $comments;
+        }
+    }
+
+    public function create($values, $id)
+    {
+        $bdd = $this->bdd;
+
+        $query = "INSERT INTO comments (id, fk_post_id, author, comment, comment_date, report) VALUES (NULL, :fk_post_id, :author, :comment, CURRENT_TIMESTAMP, 0)";
+
+        $req = $bdd->prepare($query);
+
+        $req->bindValue(':fk_post_id', $id, PDO::PARAM_STR);
+        $req->bindValue(':author', $_SESSION['pseudo'], PDO::PARAM_STR);
+        $req->bindValue(':comment', $values['comment'], PDO::PARAM_STR);
+
+        $req->execute();
+    }
+
+    public function delete($id)
+    {
+        $bdd = $this->bdd;
+
+        $query = "DELETE FROM comments WHERE id = :id";
+
+        $req = $bdd->prepare($query);
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $req->execute();
     }
 
 
