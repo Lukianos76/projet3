@@ -12,18 +12,21 @@ class Routeur
 
     private $routes =   [
                             ""                      => ["controller" => 'FrontEnd', 'method' => 'showHome'],
-                            "home"                  => ["controller" => 'FrontEnd', 'method' => 'showHome'],
+                            "accueil"               => ["controller" => 'FrontEnd', 'method' => 'showHome'],
+                            "chapitre"              => ["controller" => 'FrontEnd', 'method' => 'showPost'],
+                            "a-propos"              => ["controller" => 'FrontEnd', 'method' => 'showAbout'],
                             "contact"               => ["controller" => 'FrontEnd', 'method' => 'showContact'],
-                            "post"                  => ["controller" => 'FrontEnd', 'method' => 'showPost'],
+                            "404"                   => ["controller" => 'FrontEnd', 'method' => 'show404'],
+                            "administration"        => ["controller" => 'FrontEnd', 'method' => 'showAdmin'],
                             "edit-post"             => ["controller" => 'BackEnd', 'method'  => 'editPost'],
-                            "add-post"              => ["controller" => 'BackEnd', 'method'  => 'addPost'],
+                            "ajouter-chapitre"      => ["controller" => 'BackEnd', 'method'  => 'addPost'],
                             "delete-post"           => ["controller" => 'BackEnd', 'method'  => 'delPost'],
                             "add-comment"           => ["controller" => 'BackEnd', 'method'  => 'addComment'],
                             "delete-comment"        => ["controller" => 'BackEnd', 'method'  => 'delComment'],
                             "report-comment"        => ["controller" => 'BackEnd', 'method'  => 'reportComment'],
-                            "register"              => ["controller" => 'BackEnd', 'method'  => 'addUser'],
-                            "login"                 => ["controller" => 'BackEnd', 'method'  => 'login'],
-                            "disconnect"            => ["controller" => 'BackEnd', 'method'  => 'disconnect'],
+                            "inscription"           => ["controller" => 'BackEnd', 'method'  => 'addUser'],
+                            "connexion"             => ["controller" => 'BackEnd', 'method'  => 'login'],
+                            "deconnexion"           => ["controller" => 'BackEnd', 'method'  => 'disconnect'],
                         ];
 
     public function __construct($request)
@@ -77,7 +80,8 @@ class Routeur
             $currentController = new $controller;
             $currentController->$method($params);
         } else {
-            echo '404';
+            $myView = new View();
+            $myView->redirect('404');;
         }
 
     }

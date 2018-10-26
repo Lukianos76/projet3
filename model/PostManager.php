@@ -76,6 +76,13 @@ class PostManager
         $req->bindValue(':id', $id, PDO::PARAM_INT);
 
         $req->execute();
+
+        $query = "DELETE FROM comments WHERE fk_post_id = :id";
+
+        $req = $bdd->prepare($query);
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $req->execute();
     }
 
     public function update($values)

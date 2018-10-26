@@ -1,7 +1,32 @@
-<h1>Connexion</h1>
-<form action="<?= HOST;?>login" method="post">
-    Pseudo : <input type="text" name="values[pseudo]" value=""><br>
-    Mot de passe : <input type="password" name="values[password]" value=""><br>
-    <p><?= isset($errorMessage) ? $errorMessage : "" ?></p>
-    <input type="submit" value="Connexion"/>
-</form>
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('<?= ASSETS?>img/login-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>Connexion</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <form class="text-center" action="<?= HOST;?>connexion" method="post">
+                <div class="form-group">
+                    <label for="pseudoInput">Pseudo</label>
+                    <input class="form-control" id="pseudoInput" type="text" name="values[pseudo]" value="">
+                </div>
+                <div class="form-group">
+                    <label for="passwordInput">Mot de passe</label>
+                    <input class="form-control" id="passwordInput" type="password" name="values[password]" value="">
+                    <p><?= isset($errorMessage) ? $errorMessage : "" ?></p>
+                </div>
+                <button type="submit" class="btn btn-primary">Connexion</button>
+            </form>
+        </div>
+    </div>
+</div>

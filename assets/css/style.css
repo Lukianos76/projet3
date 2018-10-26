@@ -1,0 +1,21 @@
+@media only screen and (min-width: 768px) {
+    header.masthead .page-heading h1, header.masthead .site-heading h1 {
+        font-size: 54px !important;
+    }
+}
+header.masthead .page-heading h1, header.masthead .site-heading h1{
+    font-size: 40px !important;
+}
+
+.edit-nav a.nav-link{
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    font-size: 18px !important;
+}
+label, input{
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif !important;
+}
+
+.back-end a{
+    margin-bottom: 20px !important;
+}

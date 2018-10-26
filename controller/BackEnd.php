@@ -86,7 +86,9 @@ class BackEnd
 
     public function addComment($params)
     {
-        session_start();
+        if(!isset($_SESSION['id'])) :
+            session_start();
+        endif;
         extract($params);
 
         if($params !== NULL)
@@ -126,7 +128,6 @@ class BackEnd
     public function login($params)
     {
         $errorMessage = NULL;
-        extract($params);
 
         if ($params !== NULL)
         {
@@ -134,13 +135,13 @@ class BackEnd
 
             $manager = new UserManager();
 
+            extract($params);
 
             $errorMessage = $manager->checkLogin($values);
 
             if($errorMessage !== NULL)
             {
                 if(isset($id)){
-                    extract($params);
 
                     $postManager = new PostManager();
                     $post = $postManager->find($id);
@@ -148,7 +149,7 @@ class BackEnd
                     $commentManager = new CommentManager();
                     $comments = $commentManager->findAll($id);
 
-                    $myView = new View('post');
+                    $myView = new View('home');
                     $myView->render(array('post' => $post, 'comments' => $comments, 'errorMessage' => $errorMessage));
                 }
                 else
@@ -163,12 +164,12 @@ class BackEnd
 
                 if(isset($id)){
                     $myView = new View();
-                    $myView->redirect('post/id/'.$id);;
+                    $myView->redirect('chapitre/id/'.$id);;
                 }
                 else
                 {
                     $myView = new View();
-                    $myView->redirect('home');
+                    $myView->redirect('accueil');
                 }
             }
         }
@@ -180,10 +181,12 @@ class BackEnd
 
     public function disconnect($params)
     {
-        session_start();
+        if(!isset($_SESSION['id'])) :
+            session_start();
+        endif;
         session_destroy();
 
         $myView = new View();
-        $myView->redirect('home');
+        $myView->redirect('accueil');
     }
 }

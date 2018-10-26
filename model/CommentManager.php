@@ -48,7 +48,7 @@ class CommentManager
 
         $req->bindValue(':fk_post_id', $id, PDO::PARAM_STR);
         $req->bindValue(':author', $_SESSION['pseudo'], PDO::PARAM_STR);
-        $req->bindValue(':comment', $values['comment'], PDO::PARAM_STR);
+        $req->bindValue(':comment', strip_tags(htmlspecialchars($values['comment'])), PDO::PARAM_STR);
 
         $req->execute();
     }
