@@ -29,7 +29,7 @@ endif ?>
         <?php if (isset($_SESSION['id']) && $_SESSION['administrator'] == 1) :?>
         <ul class="col nav edit-nav justify-content-end">
             <li class="nav-item">
-                <a class="nav-link" href="<?= HOST?>delete-post/id/<?= $post->getId()?>"><i class="fas fa-trash-alt"></i></span></a>
+                 <a class="nav-link" href="<?= HOST?>delete-post/id/<?= $post->getId()?>"><i class="fas fa-trash-alt"></i></span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?= HOST?>edit-post/id/<?= $post->getId()?>"><i class="fas fa-pencil-alt"></i></a>
@@ -41,7 +41,7 @@ endif ?>
 
 <hr>
 
-<div class="container">
+<div class="container" id="commentsBlock">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
             <h3>Poster un commentaire :</h3>
@@ -53,7 +53,7 @@ endif ?>
                     <button type="submit" class="btn btn-primary">Poster le commentaire</button>
             </form>
             <?php else :?>
-                <form action="<?= HOST;?>login/id/<?= $post->getId()?>" method="post">
+                <form action="<?= HOST;?>connexion/id/<?= $post->getId()?>" method="post">
                     <div class="form-group">
                         <label for="pseudoInput">Pseudo :</label>
                         <input class="form-control" id="pseudoInput" placeholder="Votre pseudo" type="text" name="values[pseudo]" value="">
@@ -73,9 +73,9 @@ endif ?>
             <?php if (isset($comments)) :?>
                 <?php foreach ($comments as $comment):?>
                 <div class="comment">
-                    <p><?= $comment->getComment() ?></p>
+                    <p><?= htmlspecialchars($comment->getComment()) ?></p>
                     <div class="row post-preview">
-                        <p class="col-9 post-meta">Posté par <?= $comment->getAuthor() ?> le <?= $comment->getCommentDate() ?></p>
+                        <p class="col-9 post-meta">Posté par <?= htmlspecialchars($comment->getAuthor()) ?> le <?= $comment->getCommentDate() ?></p>
                         <ul class="col-3 nav edit-nav justify-content-end">
                         <?php if (((isset($_SESSION['id'])) && $_SESSION['pseudo'] === $comment->getAuthor()) || (isset($_SESSION['id']) && $_SESSION['administrator'] == 1)) :?>
                             <li class="nav-item">

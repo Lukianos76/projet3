@@ -22,11 +22,11 @@ endif ?>
     </div>
     <div class="row">
         <div class="col-4"></div>
-        <a class="col-4 text-center btn btn-primary" href="#"></i>Modifier/Supprimer un chapitre</a>
+        <a class="col-4 text-center btn btn-primary" href="<?= HOST?>modifier-supprimer-chapitres"></i>Modifier/Supprimer des chapitres</a>
     </div>
     <div class="row">
         <div class="col-4"></div>
-        <a class="col-4 text-center btn btn-primary" href="#"></i>Gérer les commentaire</a>
+        <a class="col-4 text-center btn btn-primary" href="<?=HOST?>gerer-commentaires"></i>Gérer les commentaires</a>
     </div>
 
     </div>

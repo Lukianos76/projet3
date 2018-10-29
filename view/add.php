@@ -2,13 +2,13 @@
     session_start();
 endif ?>
 
-<header class="masthead" style="background-image: url('<?= ASSETS?>img/home-bg.jpg')">
+<header class="masthead" style="background-image: url('<?= ASSETS?>img/login-bg.jpg')">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1>Ajouter un post</h1>
+                    <h1>Ajouter un chapitre</h1>
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@ endif ?>
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-            <form class="text-center" action="<?= HOST;?>add-post" method="post">
+            <form class="text-center" action="<?= HOST;?>ajouter-chapitre" method="post">
                 <div class="form-group">
                     <label for="titleInput">Titre</label>
                     <input class="form-control" id="titleInput" type="text" name="values[title]" value="">

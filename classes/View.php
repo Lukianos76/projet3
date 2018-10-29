@@ -26,8 +26,11 @@ class View
     public function redirect($routes, $params = array())
     {
         extract($params);
+
         header("Location: ".HOST.$routes);
         exit;
+
+
     }
 
 }

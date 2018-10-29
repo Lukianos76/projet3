@@ -13,7 +13,7 @@ class BackEnd
         {
             $manager->update($params['values']);
             $myView = new View();
-            $myView->redirect('home');
+            $myView->redirect('accueil');
         }
         else
         {
@@ -36,7 +36,7 @@ class BackEnd
             $manager->create($values);
 
             $myView = new View();
-            $myView->redirect('home');
+            $myView->redirect('accueil');
 
         }
 
@@ -51,7 +51,7 @@ class BackEnd
         $manager->delete($id);
 
         $myView = new View();
-        $myView->redirect('home');
+        $myView->redirect('accueil');
     }
 
     public function addUser($params)
@@ -99,7 +99,7 @@ class BackEnd
             $manager->create($values, $id);
 
             $myView = new View();
-            $myView->redirect('post/id/'.$id);
+            $myView->redirect('chapitre/id/'.$id.'#commentsBlock');
         }
     }
 
@@ -109,8 +109,19 @@ class BackEnd
         $manager = new CommentManager();
         $manager->delete($comment);
 
-        $myView = new View();
-        $myView->redirect('post/id/'.$id);;
+
+        if(isset($id))
+        {
+            $myView = new View();
+            $myView->redirect('chapitre/id/' . $id . '#commentsBlock');
+        }
+        else
+        {
+            $myView = new View();
+            $myView->redirect('gerer-commentaires');
+        }
+
+
 
     }
 
@@ -122,7 +133,7 @@ class BackEnd
         $manager->report($comment);
 
         $myView = new View();
-        $myView->redirect('post/id/'.$id);;
+        $myView->redirect('chapitre/id/'.$id.'#commentsBlock');;
     }
 
     public function login($params)
@@ -164,7 +175,7 @@ class BackEnd
 
                 if(isset($id)){
                     $myView = new View();
-                    $myView->redirect('chapitre/id/'.$id);;
+                    $myView->redirect('chapitre/id/'.$id.'#commentsBlock');;
                 }
                 else
                 {

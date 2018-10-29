@@ -21,6 +21,8 @@ endif ?>
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
+            <h2 class="text-center text-uppercase">Derniers Chapitres Publiés</h2>
+            <hr>
             <?php foreach ($posts as $post):?>
             <div class="post-preview">
                 <a href="<?= HOST?>chapitre/id/<?= $post->getId()?>">
@@ -28,7 +30,7 @@ endif ?>
                         <?= $post->getTitle() ?>
                     </h2>
                     <h3 class="post-subtitle">
-                        <?= substr($post->getContent(), 0, 255)."(...)" ?>
+                        <?= $post->getContentResume(); ?>
                     </h3>
                 </a>
                 <div class="post-preview row">
@@ -49,7 +51,7 @@ endif ?>
             <hr>
             <!-- Pager -->
             <div class="clearfix">
-                <a class="btn btn-primary float-right" href="#">Chapitres précédents <i class="fas fa-arrow-right"></i></a>
+                <a class="btn btn-primary float-right" href="<?= HOST?>roman">Chapitres précédents <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </div>

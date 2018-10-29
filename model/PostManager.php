@@ -14,7 +14,28 @@ class PostManager
     {
         $bdd = $this->bdd;
 
-        $query = "SELECT id, title, content, DATE_FORMAT(creation_date, '%d/%m/%Y à %Hh%i') AS creation_date_fr FROM posts ORDER BY creation_date DESC";
+        $query = "SELECT id, title, content, DATE_FORMAT(creation_date, '%d/%m/%Y à %Hh%i') AS creation_date_fr FROM posts ORDER BY creation_date";
+
+        $req = $bdd->prepare($query);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
+
+            $post = new Post();
+            $post->setId($row['id']);
+            $post->setTitle($row['title']);
+            $post->setContent($row['content']);
+            $post->setCreationDate($row['creation_date_fr']);
+
+            $posts[] = $post;
+        }
+
+        return $posts;
+    }
+
+    public function findHome(){
+        $bdd = $this->bdd;
+
+        $query = "SELECT id, title, content, DATE_FORMAT(creation_date, '%d/%m/%Y à %Hh%i') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 3";
 
         $req = $bdd->prepare($query);
         $req->execute();

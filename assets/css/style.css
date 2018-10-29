@@ -1,10 +1,11 @@
+header.masthead .page-heading h1, header.masthead .site-heading h1{
+    font-size: 40px !important;
+}
+
 @media only screen and (min-width: 768px) {
     header.masthead .page-heading h1, header.masthead .site-heading h1 {
         font-size: 54px !important;
     }
-}
-header.masthead .page-heading h1, header.masthead .site-heading h1{
-    font-size: 40px !important;
 }
 
 .edit-nav a.nav-link{
@@ -12,10 +13,33 @@ header.masthead .page-heading h1, header.masthead .site-heading h1{
     padding-bottom: 0 !important;
     font-size: 18px !important;
 }
-label, input{
+label, input, textarea{
     font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif !important;
+}
+#contentTextarea{
+    font-family: 'Lora', 'Times New Roman', serif !important;
 }
 
 .back-end a{
     margin-bottom: 20px !important;
+}
+
+#scrollUp{
+    position: fixed;
+    bottom : 20px;
+    right: -100px;
+    opacity: 1;
+}
+
+#scrollUp a{
+    color : #0085a1;
+    font-size: 2em;
+}
+#scrollUp a:hover{
+    color : #00657b !important;
+}
+@media only screen and (max-width: 690px) {
+    #scrollUp{
+    left:  -10000px;
+    }
 }

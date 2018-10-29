@@ -10,6 +10,18 @@ class Post
     /**
      * @return mixed
      */
+    public function getContentResume()
+    {
+        $endStr = '[...]';
+        if( strlen( $this->getContent() ) <= 250 ) return $this->getContent();
+        $str = mb_substr( $this->getContent(), 0, 300 - strlen( $endStr ) + 1, 'UTF-8');
+
+        return substr( $str, 0, strrpos( $str,' ') ).$endStr;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
