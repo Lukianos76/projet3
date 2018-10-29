@@ -1,7 +1,3 @@
-<?php if(!isset($_SESSION['id'])) :
-    session_start();
-endif ?>
-
 <header class="masthead" style="background-image: url('<?= ASSETS?>img/login-bg.jpg')">
     <div class="overlay"></div>
     <div class="container">
@@ -36,10 +32,10 @@ endif ?>
                         <?php if (isset($_SESSION['id']) && $_SESSION['administrator'] == 1) :?>
                             <ul class="col nav edit-nav justify-content-end">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= HOST?>delete-post/id/<?= $post->getId()?>"><i class="fas fa-trash-alt"></i></span></a>
+                                    <a class="nav-link" href="<?= HOST?>supprimer-chapitre/id/<?= $post->getId()?>"><i class="fas fa-trash-alt"></i></span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= HOST?>edit-post/id/<?= $post->getId()?>"><i class="fas fa-pencil-alt"></i></a>
+                                    <a class="nav-link" href="<?= HOST?>modifier-chapitre/id/<?= $post->getId()?>"><i class="fas fa-pencil-alt"></i></a>
                                 </li>
                             </ul>
                         <?php endif ?>

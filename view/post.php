@@ -1,7 +1,3 @@
-<?php if(!isset($_SESSION['id'])) :
-    session_start();
-endif ?>
-
 <!-- Page Header -->
 <header class="masthead" style="background-image: url('<?= ASSETS?>img/post-bg.jpg')">
     <div class="overlay"></div>
@@ -46,7 +42,7 @@ endif ?>
         <div class="col-lg-8 col-md-10 mx-auto">
             <h3>Poster un commentaire :</h3>
             <?php if (isset($_SESSION['id'])) :?>
-                <form action="<?= HOST;?>add-comment/id/<?= $post->getId()?>" method="post">
+                <form action="<?= HOST;?>ajouter-commentaire/id/<?= $post->getId()?>" method="post">
                     <div class="form-group">
                         <textarea class="form-control" id="commentTextarea" name="values[comment]" rows="8"></textarea>
                     </div>
@@ -79,12 +75,12 @@ endif ?>
                         <ul class="col-3 nav edit-nav justify-content-end">
                         <?php if (((isset($_SESSION['id'])) && $_SESSION['pseudo'] === $comment->getAuthor()) || (isset($_SESSION['id']) && $_SESSION['administrator'] == 1)) :?>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= HOST?>delete-comment/id/<?= $post->getId()?>/comment/<?= $comment->getId()?>"><i class="fas fa-trash-alt"></i></span></a>
+                                <a class="nav-link" href="<?= HOST?>supprimer-commentaire/id/<?= $post->getId()?>/commentid/<?= $comment->getId()?>"><i class="fas fa-trash-alt"></i></span></a>
                             </li>
                         <?php endif ?>
                         <?php if (isset($_SESSION['id'])) :?>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= HOST?>report-comment/id/<?= $post->getId()?>/comment/<?= $comment->getId()?>"><i class="fas fa-exclamation-triangle"></i></span></a>
+                                <a class="nav-link" href="<?= HOST?>report-commentaire/id/<?= $post->getId()?>/commentid/<?= $comment->getId()?>"><i class="fas fa-exclamation-triangle"></i></span></a>
                             </li>
                         <?php endif ?>
                         </ul>

@@ -1,7 +1,3 @@
-<?php if(!isset($_SESSION['id'])) :
-    session_start();
-endif ?>
-
 <header class="masthead" style="background-image: url('<?= ASSETS?>img/404-bg.jpg')">
     <div class="overlay"></div>
     <div class="container">

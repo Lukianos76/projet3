@@ -86,9 +86,6 @@ class BackEnd
 
     public function addComment($params)
     {
-        if(!isset($_SESSION['id'])) :
-            session_start();
-        endif;
         extract($params);
 
         if($params !== NULL)
@@ -106,16 +103,27 @@ class BackEnd
     public function delComment($params)
     {
         extract($params);
-        $manager = new CommentManager();
-        $manager->delete($comment);
 
+        $manager = new CommentManager();
+        $comment = $manager->find($commentid);
+        $author = $comment->getAuthor();
+
+        if((isset($_SESSION['id']) && $_SESSION['pseudo'] === $author) || (isset($_SESSION['id']) && $_SESSION['administrator'] === '1'))
+        {
+            $manager->delete($commentid);
+        }
+        else
+        {
+            $myView = new View();
+            $myView->redirect('404');
+        }
 
         if(isset($id))
         {
             $myView = new View();
             $myView->redirect('chapitre/id/' . $id . '#commentsBlock');
         }
-        else
+        elseif($_SESSION['administrator'] === '1')
         {
             $myView = new View();
             $myView->redirect('gerer-commentaires');
@@ -129,11 +137,18 @@ class BackEnd
     {
         extract($params);
 
-        $manager = new CommentManager();
-        $manager->report($comment);
+        if(isset($_SESSION['id'])) {
+            $manager = new CommentManager();
+            $manager->report($commentid);
 
-        $myView = new View();
-        $myView->redirect('chapitre/id/'.$id.'#commentsBlock');;
+            $myView = new View();
+            $myView->redirect('chapitre/id/' . $id . '#commentsBlock');;
+        }
+        else
+        {
+            $myView = new View();
+            $myView->redirect('404');
+        }
     }
 
     public function login($params)
@@ -192,9 +207,6 @@ class BackEnd
 
     public function disconnect($params)
     {
-        if(!isset($_SESSION['id'])) :
-            session_start();
-        endif;
         session_destroy();
 
         $myView = new View();

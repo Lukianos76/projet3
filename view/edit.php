@@ -1,7 +1,3 @@
-<?php if(!isset($_SESSION['id'])) :
-    session_start();
-endif ?>
-
 <header class="masthead" style="background-image: url('<?= ASSETS?>img/login-bg.jpg')">
     <div class="overlay"></div>
     <div class="container">
@@ -20,7 +16,7 @@ endif ?>
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-            <form class="text-center" action="<?= HOST;?>edit-post" method="post">
+            <form class="text-center" action="<?= HOST;?>modifier-chapitre" method="post">
                 <?php if($post->getId()):?>
                     <input type="hidden" name="values[id]" value="<?= $post->getId() ?>">
                 <?php endif; ?>

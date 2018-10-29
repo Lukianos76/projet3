@@ -17,16 +17,16 @@ class Routeur
                             "a-propos"                      => ["controller" => 'FrontEnd', 'method' => 'showAbout',            'user' => '0'],
                             "contact"                       => ["controller" => 'FrontEnd', 'method' => 'showContact',          'user' => '0'],
                             "404"                           => ["controller" => 'FrontEnd', 'method' => 'show404',              'user' => '0'],
-                            "modifier-supprimer-chapitres"  => ["controller" => 'FrontEnd', 'method' => 'showAdminEditDel',     'user' => '0'],
-                            "gerer-commentaires"            => ["controller" => 'FrontEnd', 'method' => 'showAdminComments',    'user' => '0'],
-                            "administration"                => ["controller" => 'FrontEnd', 'method' => 'showAdmin',            'user' => '0'],
+                            "modifier-supprimer-chapitres"  => ["controller" => 'FrontEnd', 'method' => 'showAdminEditDel',     'user' => '1'],
+                            "gerer-commentaires"            => ["controller" => 'FrontEnd', 'method' => 'showAdminComments',    'user' => '1'],
+                            "administration"                => ["controller" => 'FrontEnd', 'method' => 'showAdmin',            'user' => '1'],
                             "roman"                         => ["controller" => 'FrontEnd', 'method' => 'showBook',             'user' => '0'],
-                            "edit-post"                     => ["controller" => 'BackEnd', 'method'  => 'editPost',             'user' => '0'],
-                            "ajouter-chapitre"              => ["controller" => 'BackEnd', 'method'  => 'addPost',              'user' => '0'],
-                            "delete-post"                   => ["controller" => 'BackEnd', 'method'  => 'delPost',              'user' => '0'],
-                            "add-comment"                   => ["controller" => 'BackEnd', 'method'  => 'addComment',           'user' => '0'],
-                            "delete-comment"                => ["controller" => 'BackEnd', 'method'  => 'delComment',           'user' => '0'],
-                            "report-comment"                => ["controller" => 'BackEnd', 'method'  => 'reportComment',        'user' => '0'],
+                            "modifier-chapitre"               => ["controller" => 'BackEnd', 'method'  => 'editPost',             'user' => '1'],
+                            "ajouter-chapitre"              => ["controller" => 'BackEnd', 'method'  => 'addPost',              'user' => '1'],
+                            "supprimer-chapitre"            => ["controller" => 'BackEnd', 'method'  => 'delPost',              'user' => '1'],
+                            "ajouter-commentaire"           => ["controller" => 'BackEnd', 'method'  => 'addComment',           'user' => '0'],
+                            "supprimer-commentaire"         => ["controller" => 'BackEnd', 'method'  => 'delComment',           'user' => '0'],
+                            "report-commentaire"                => ["controller" => 'BackEnd', 'method'  => 'reportComment',        'user' => '0'],
                             "inscription"                   => ["controller" => 'BackEnd', 'method'  => 'addUser',              'user' => '0'],
                             "connexion"                     => ["controller" => 'BackEnd', 'method'  => 'login',                'user' => '0'],
                             "deconnexion"                   => ["controller" => 'BackEnd', 'method'  => 'disconnect',           'user' => '0'],
@@ -78,13 +78,29 @@ class Routeur
         {
             $controller = $this->routes[$route]['controller'];
             $method     = $this->routes[$route]['method'];
+            $user       = $this->routes[$route]['user'];
 
-
-            $currentController = new $controller;
-            $currentController->$method($params);
+            switch ($user){
+                case 0 :
+                    $currentController = new $controller;
+                    $currentController->$method($params);
+                    break;
+                case 1 :
+                    if (isset($_SESSION['id']) && $_SESSION['administrator'] === '1')
+                    {
+                        $currentController = new $controller;
+                        $currentController->$method($params);
+                    }
+                    else
+                    {
+                        $myView = new View();
+                        $myView->redirect('404');
+                    }
+                    break;
+            }
         } else {
             $myView = new View();
-            $myView->redirect('404');;
+            $myView->redirect('404');
         }
 
     }

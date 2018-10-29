@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include_once ('_config.php');
 
 MyAutoload::start();

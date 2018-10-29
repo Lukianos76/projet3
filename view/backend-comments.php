@@ -1,8 +1,4 @@
-<?php if(!isset($_SESSION['id'])) :
-    session_start();
-endif ?>
-
-    <header class="masthead" style="background-image: url('<?= ASSETS?>img/login-bg.jpg')">
+<header class="masthead" style="background-image: url('<?= ASSETS?>img/login-bg.jpg')">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -13,7 +9,7 @@ endif ?>
                 </div>
             </div>
         </div>
-    </header>
+</header>
 
 <div class="container">
     <div class="row">
@@ -28,7 +24,7 @@ endif ?>
                         <ul class="col-3 nav edit-nav justify-content-end">
                             <?php if (((isset($_SESSION['id'])) && $_SESSION['pseudo'] === $comment->getAuthor()) || (isset($_SESSION['id']) && $_SESSION['administrator'] == 1)) :?>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= HOST?>delete-comment/comment/<?= $comment->getId()?>"><i class="fas fa-trash-alt"></i></span></a>
+                                    <a class="nav-link" href="<?= HOST?>supprimer-commentaire/commentid/<?= $comment->getId()?>"><i class="fas fa-trash-alt"></i></span></a>
                                 </li>
                             <?php endif ?>
                             <li class="nav-item">
