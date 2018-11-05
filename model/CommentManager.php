@@ -13,7 +13,7 @@ class CommentManager
     public function findAllComments(){
         $bdd = $this->bdd;
 
-        $query = "SELECT id, fk_post_id, author, comment, report, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%i') AS comment_date_fr FROM comments ORDER BY report DESC ";
+        $query = "SELECT id, fk_post_id, author, comment, report, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%i') AS comment_date_fr FROM projet3_comments ORDER BY report DESC ";
 
         $req = $bdd->prepare($query);
         $req->execute();
@@ -40,7 +40,7 @@ class CommentManager
     {
         $bdd = $this->bdd;
 
-        $query = "SELECT id, fk_post_id, author, comment, report, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%i') AS comment_date_fr FROM comments WHERE fk_post_id = :fk_post_id ORDER BY comment_date DESC ";
+        $query = "SELECT id, fk_post_id, author, comment, report, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%i') AS comment_date_fr FROM projet3_comments WHERE fk_post_id = :fk_post_id ORDER BY comment_date DESC ";
 
         $req = $bdd->prepare($query);
         $req->bindValue(':fk_post_id', $id, PDO::PARAM_INT);
@@ -68,7 +68,7 @@ class CommentManager
     {
         $bdd = $this->bdd;
 
-        $query = "SELECT id, fk_post_id, author, comment, report, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%i') AS comment_date_fr FROM comments WHERE id = :id";
+        $query = "SELECT id, fk_post_id, author, comment, report, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%i') AS comment_date_fr FROM projet3_comments WHERE id = :id";
 
         $req = $bdd->prepare($query);
         $req->bindValue(':id', $id, PDO::PARAM_INT);
@@ -86,11 +86,12 @@ class CommentManager
         return $comment;
     }
 
+
     public function create($values, $id)
     {
         $bdd = $this->bdd;
 
-        $query = "INSERT INTO comments (id, fk_post_id, author, comment, comment_date, report) VALUES (NULL, :fk_post_id, :author, :comment, CURRENT_TIMESTAMP, 0)";
+        $query = "INSERT INTO projet3_comments (id, fk_post_id, author, comment, comment_date, report) VALUES (NULL, :fk_post_id, :author, :comment, CURRENT_TIMESTAMP, 0)";
 
         $req = $bdd->prepare($query);
 
@@ -105,7 +106,7 @@ class CommentManager
     {
         $bdd = $this->bdd;
 
-        $query = "DELETE FROM comments WHERE id = :id";
+        $query = "DELETE FROM projet3_comments WHERE id = :id";
 
         $req = $bdd->prepare($query);
         $req->bindValue(':id', $id, PDO::PARAM_INT);
@@ -117,8 +118,8 @@ class CommentManager
     {
         $bdd = $this->bdd;
 
-        $query = "SELECT report FROM comments WHERE id = :id";
 
+        $query = "SELECT report FROM projet3_comments WHERE id = :id";
         $req = $bdd->prepare($query);
         $req->bindValue(':id', $id, PDO::PARAM_INT);
         $req->execute();
@@ -126,14 +127,38 @@ class CommentManager
         $report['report'] = $report['report'] + 1;
 
 
-        $query = "UPDATE comments SET report = :report WHERE id = :id";
+        $query = "UPDATE projet3_comments SET report = :report WHERE id = :id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
+        $req->bindValue(':report', $report['report'], PDO::PARAM_STR);
+        $req->execute();
+
+
+        $query = "INSERT INTO projet3_report_comments (fk_comment_id, fk_pseudo) VALUES (:fk_comment_id, :fk_pseudo)";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':fk_comment_id', $id, PDO::PARAM_INT);
+        $req->bindValue(':fk_pseudo', $_SESSION['pseudo'], PDO::PARAM_STR);
+        $req->execute();
+
+    }
+
+    public function checkReport($id)
+    {
+        $bdd = $this->bdd;
+
+        $query = "SELECT fk_comment_id, fk_pseudo FROM projet3_report_comments WHERE fk_comment_id = :fk_comment_id AND fk_pseudo = :fk_pseudo";
 
         $req = $bdd->prepare($query);
 
-        $req->bindValue(':id', $id, PDO::PARAM_INT);
-        $req->bindValue(':report', $report['report'], PDO::PARAM_STR);
+        $req->bindValue(':fk_comment_id', $id, PDO::PARAM_INT);
+        $req->bindValue(':fk_pseudo', $_SESSION['pseudo'], PDO::PARAM_STR);
 
         $req->execute();
+
+        $isReport = $req->fetch();
+
+        return $isReport;
+
     }
 
 }

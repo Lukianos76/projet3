@@ -14,7 +14,7 @@ class PostManager
     {
         $bdd = $this->bdd;
 
-        $query = "SELECT id, title, content, DATE_FORMAT(creation_date, '%d/%m/%Y à %Hh%i') AS creation_date_fr FROM posts ORDER BY creation_date";
+        $query = "SELECT id, title, content, DATE_FORMAT(creation_date, '%d/%m/%Y à %Hh%i') AS creation_date_fr FROM projet3_posts ORDER BY creation_date";
 
         $req = $bdd->prepare($query);
         $req->execute();
@@ -35,7 +35,7 @@ class PostManager
     public function findHome(){
         $bdd = $this->bdd;
 
-        $query = "SELECT id, title, content, DATE_FORMAT(creation_date, '%d/%m/%Y à %Hh%i') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 3";
+        $query = "SELECT id, title, content, DATE_FORMAT(creation_date, '%d/%m/%Y à %Hh%i') AS creation_date_fr FROM projet3_posts ORDER BY creation_date DESC LIMIT 3";
 
         $req = $bdd->prepare($query);
         $req->execute();
@@ -57,7 +57,7 @@ class PostManager
     {
         $bdd = $this->bdd;
 
-        $query = "SELECT id, title, content, DATE_FORMAT(creation_date, '%d/%m/%Y à %Hh%i') AS creation_date_fr FROM posts WHERE id = :id";
+        $query = "SELECT id, title, content, DATE_FORMAT(creation_date, '%d/%m/%Y à %Hh%i') AS creation_date_fr FROM projet3_posts WHERE id = :id";
 
         $req = $bdd->prepare($query);
         $req->bindValue(':id', $id, PDO::PARAM_INT);
@@ -77,7 +77,7 @@ class PostManager
     {
         $bdd = $this->bdd;
 
-        $query = "INSERT INTO posts (id, title, content, creation_date) VALUES (NULL, :title, :content, CURRENT_TIMESTAMP)";
+        $query = "INSERT INTO projet3_posts (id, title, content, creation_date) VALUES (NULL, :title, :content, CURRENT_TIMESTAMP)";
 
         $req = $bdd->prepare($query);
 
@@ -91,14 +91,14 @@ class PostManager
     {
         $bdd = $this->bdd;
 
-        $query = "DELETE FROM posts WHERE id = :id";
+        $query = "DELETE FROM projet3_posts WHERE id = :id";
 
         $req = $bdd->prepare($query);
         $req->bindValue(':id', $id, PDO::PARAM_INT);
 
         $req->execute();
 
-        $query = "DELETE FROM comments WHERE fk_post_id = :id";
+        $query = "DELETE FROM projet3_comments WHERE fk_post_id = :id";
 
         $req = $bdd->prepare($query);
         $req->bindValue(':id', $id, PDO::PARAM_INT);
@@ -110,7 +110,7 @@ class PostManager
     {
         $bdd = $this->bdd;
 
-        $query = "UPDATE posts SET title = :title, content = :content WHERE id = :id";
+        $query = "UPDATE projet3_posts SET title = :title, content = :content WHERE id = :id";
 
         $req = $bdd->prepare($query);
 

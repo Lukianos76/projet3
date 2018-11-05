@@ -65,6 +65,30 @@ class BackEnd
             $manager = new UserManager();
 
             $errorMessage = $manager->checkRegister($values);
+            //VERIFICATION VALID EMAIL
+            if ( !preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ " , $values['email'] ) )
+            {
+                $errorMessage = $errorMessage."L'email n'est pas valide<br>";
+            }
+
+            //VERIFICATION VALID PSEUDO
+            if (!preg_match ( " /^[a-zA-Z0-9_]{3,16}$/ " , $values['pseudo'] ))
+            {
+                $errorMessage = $errorMessage."Le pseudo n'est pas valide<br>";
+            }
+
+            //VERIFICATION VALID PASSWORD
+            if(!$values['password'])
+            {
+                $errorMessage = $errorMessage."Le mot de passe n'est pas valide<br>";
+            }
+
+            //VERIFICATION IDENTIC PASSWORD
+            if ($values['password'] !== $values['password_check'])
+            {
+                $errorMessage = $errorMessage . "Les deux mot de passe sont différents<br>";
+
+            }
 
             if($errorMessage !== NULL)
             {
@@ -74,9 +98,10 @@ class BackEnd
             else
             {
                 $manager->create($values);
+                $manager->login($values);
 
                 $myView = new View();
-                $myView->redirect('home');
+                $myView->redirect('accueil');
             }
         }
 
@@ -136,9 +161,10 @@ class BackEnd
     public function reportComment($params)
     {
         extract($params);
+        $manager = new CommentManager();
+        $isReport = $manager->checkReport($commentid);
 
-        if(isset($_SESSION['id'])) {
-            $manager = new CommentManager();
+        if((isset($_SESSION['id'])) && (!$isReport)) {
             $manager->report($commentid);
 
             $myView = new View();
@@ -175,7 +201,7 @@ class BackEnd
                     $commentManager = new CommentManager();
                     $comments = $commentManager->findAll($id);
 
-                    $myView = new View('home');
+                    $myView = new View('post');
                     $myView->render(array('post' => $post, 'comments' => $comments, 'errorMessage' => $errorMessage));
                 }
                 else
@@ -190,7 +216,7 @@ class BackEnd
 
                 if(isset($id)){
                     $myView = new View();
-                    $myView->redirect('chapitre/id/'.$id.'#commentsBlock');;
+                    $myView->redirect('chapitre/id/'.$id.'#commentsBlock');
                 }
                 else
                 {

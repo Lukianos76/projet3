@@ -23,7 +23,7 @@
                 <div class="form-group">
                     <label for="passwordInput">Mot de passe</label>
                     <input class="form-control" id="passwordInput" type="password" name="values[password]" value="">
-                    <p><?= isset($errorMessage) ? $errorMessage : "" ?></p>
+                    <?= isset($errorMessage) ? "<p class=\"alert alert-danger\" role=\"alert\">".$errorMessage."</p>" : "" ?>
                 </div>
                 <button type="submit" class="btn btn-primary">Connexion</button>
             </form>

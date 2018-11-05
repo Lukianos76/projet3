@@ -116,7 +116,8 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; Jean Forteroche 2018</p>
+                    <p class="copyright text-muted"><a href="<?= HOST?>mentions-legales">Mentions Légales</a> </p>
+                    <p class="copyright text-muted">Ce site est un site fictif, le contenu a été tiré du livre "Le Paradise" de Georges-André Quiniou disponible gratuitement <a href="http://ga.quiniou.pagesperso-orange.fr/">ici</a>.</p>
                 </div>
             </div>
         </div>

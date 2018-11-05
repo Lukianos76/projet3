@@ -28,7 +28,7 @@
                     <label for="contentTextarea">Contenu</label>
                     <textarea  class="form-control" id="contentTextarea" name="values[content]" rows="25"><?= $post->getContent() ?></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Ajouter</button>
+                <button type="submit" class="btn btn-primary">Modifier</button>
             </form>
         </div>
     </div>

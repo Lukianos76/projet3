@@ -44,9 +44,6 @@ class FrontEnd
             $myView = new View();
             $myView->redirect('404');
         }
-
-
-
     }
 
     public function showAbout($params)
@@ -57,8 +54,14 @@ class FrontEnd
 
     public function showContact($params)
     {
-        $myView = new View('contact');
-        $myView->render();
+    $myView = new View('contact');
+    $myView->render();
+    }
+
+    public function showLegals($params)
+    {
+    $myView = new View('legals');
+    $myView->render();
     }
 
     public function show404($params)

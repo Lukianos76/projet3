@@ -21,28 +21,28 @@
                 <div class="control-group">
                     <div class="form-group controls">
                         <label>Nom</label>
-                        <input type="text" class="form-control" placeholder="Nom" id="name">
+                        <input type="text" class="form-control" id="name">
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="form-group controls">
                         <label>Adresse Email</label>
-                        <input type="email" class="form-control" placeholder="Adresse Email" id="email">
+                        <input type="email" class="form-control" id="email">
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="form-group col-xs-12 controls">
                         <label>Téléphone</label>
-                        <input type="tel" class="form-control" placeholder="Téléphone" id="phone" >
+                        <input type="tel" class="form-control" id="phone" >
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="form-group controls">
                         <label>Message</label>
-                        <textarea rows="5" class="form-control" placeholder="Message" id="message"></textarea>
+                        <textarea rows="5" class="form-control" id="message"></textarea>
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>

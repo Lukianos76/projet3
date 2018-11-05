@@ -15,7 +15,7 @@ class UserManager
 
         $password_hash = password_hash($values['password'], PASSWORD_DEFAULT);
 
-        $query = "INSERT INTO users (pseudo, password, email, register_date) VALUES (:pseudo, :password, :email, CURRENT_TIMESTAMP)";
+        $query = "INSERT INTO projet3_users (pseudo, password, email, register_date) VALUES (:pseudo, :password, :email, CURRENT_TIMESTAMP)";
 
         $req = $bdd->prepare($query);
 
@@ -31,7 +31,7 @@ class UserManager
     {
         $bdd = $this->bdd;
 
-        $query = "SELECT id, pseudo, password, email, register_date, administrator FROM users WHERE pseudo = :pseudo";
+        $query = "SELECT id, pseudo, password, email, register_date, administrator FROM projet3_users WHERE pseudo = :pseudo";
 
         $req = $bdd->prepare($query);
         $req->bindValue(':pseudo', $values['pseudo'], PDO::PARAM_STR);
@@ -64,7 +64,7 @@ class UserManager
         $errorMessage = NULL;
 
         // VERIFICATION IF PSEUDO EXIST
-        $query = "SELECT pseudo FROM users WHERE pseudo = :pseudo";
+        $query = "SELECT pseudo FROM projet3_users WHERE pseudo = :pseudo";
 
         $req = $bdd->prepare($query);
 
@@ -79,7 +79,7 @@ class UserManager
         }
 
         // VERIFICATION IF EMAIL EXIST
-        $query = "SELECT email FROM users WHERE email = :email";
+        $query = "SELECT email FROM projet3_users WHERE email = :email";
 
         $req = $bdd->prepare($query);
 
@@ -92,31 +92,6 @@ class UserManager
             $errorMessage = $errorMessage."L'email existe déjà<br>";
         }
 
-        //VERIFICATION VALID EMAIL
-        if ( !preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ " , $values['email'] ) )
-        {
-            $errorMessage = $errorMessage."L'email n'est pas valide<br>";
-        }
-
-        //VERIFICATION VALID PSEUDO
-        if (!preg_match ( " /^[a-zA-Z0-9_]{3,16}$/ " , $values['pseudo'] ))
-        {
-            $errorMessage = $errorMessage."Le pseudo n'est pas valide<br>";
-        }
-
-        //VERIFICATION VALID PASSWORD
-        if(!$values['password'])
-        {
-            $errorMessage = $errorMessage."Le mot de passe n'est pas valide<br>";
-        }
-
-        //VERIFICATION IDENTIC PASSWORD
-        if ($values['password'] !== $values['password_check'])
-        {
-            $errorMessage = $errorMessage . "Les deux mot de passe sont différents<br>";
-
-        }
-
         return $errorMessage;
     }
 
@@ -127,7 +102,7 @@ class UserManager
         $errorMessage = NULL;
 
         // VERIFICATION IF PSEUDO EXIST
-        $query = "SELECT pseudo, password FROM users WHERE pseudo = :pseudo";
+        $query = "SELECT pseudo, password FROM projet3_users WHERE pseudo = :pseudo";
 
         $req = $bdd->prepare($query);
 
