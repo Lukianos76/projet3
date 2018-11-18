@@ -17,40 +17,34 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-            <form name="sentMessage" id="contactForm" class="text-center">
+            <form id="contactForm" action="<?= HOST;?>contact" method="post" class="text-center">
                 <div class="control-group">
                     <div class="form-group controls">
-                        <label>Nom</label>
-                        <input type="text" class="form-control" id="name">
-                        <p class="help-block text-danger"></p>
+                        <label for="contactNom">Nom</label>
+                        <input type="text" class="form-control" name="values[name]"  id="contactNom">
                     </div>
                 </div>
+
                 <div class="control-group">
                     <div class="form-group controls">
-                        <label>Adresse Email</label>
-                        <input type="email" class="form-control" id="email">
-                        <p class="help-block text-danger"></p>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <div class="form-group col-xs-12 controls">
-                        <label>Téléphone</label>
-                        <input type="tel" class="form-control" id="phone" >
-                        <p class="help-block text-danger"></p>
+                        <label for="contactEmail">Adresse Email</label>
+                        <input type="email" class="form-control" name="values[email]" id="contactEmail">
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="form-group controls">
-                        <label>Message</label>
-                        <textarea rows="5" class="form-control" id="message"></textarea>
-                        <p class="help-block text-danger"></p>
+                        <label for="contactMessage">Message</label>
+                        <textarea class="form-control" id="contactMessage" name="values[message]" rows="10" ></textarea>
                     </div>
                 </div>
-                <br>
-                <div id="success"></div>
+                <div class="text-xs-center">
+                    <div class="g-recaptcha" data-sitekey="6LfwjXoUAAAAACOslFtNXrLVcJ0VuAGqeX6pDInr"></div>
+                </div>
+                <?= isset($errorMessage) ? "<p class=\"alert alert-danger\" role=\"alert\">".$errorMessage."</p>" : "" ?>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary" id="sendMessageButton">Envoyer</button>
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
                 </div>
+                <?= isset($confirmMessage) ? "<p class=\"alert alert-success\" role=\"alert\">".$confirmMessage."</p>" : "" ?>
             </form>
         </div>
     </div>

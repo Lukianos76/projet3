@@ -52,12 +52,6 @@ class FrontEnd
         $myView->render();
     }
 
-    public function showContact($params)
-    {
-    $myView = new View('contact');
-    $myView->render();
-    }
-
     public function showLegals($params)
     {
     $myView = new View('legals');

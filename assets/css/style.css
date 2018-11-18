@@ -43,3 +43,15 @@ label, input, textarea{
     left:  -10000px;
     }
 }
+@media only screen and (max-width: 1200px) {
+#mainNav .navbar-nav>li.nav-item>a{
+    font-size: 11px !important;
+}
+}
+.text-xs-center {
+    text-align: center;
+}
+
+.g-recaptcha {
+    display: inline-block;
+}

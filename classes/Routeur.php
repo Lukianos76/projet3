@@ -15,7 +15,6 @@ class Routeur
                             "accueil"                       => ["controller" => 'FrontEnd', 'method' => 'showHome',             'user' => '0'],
                             "chapitre"                      => ["controller" => 'FrontEnd', 'method' => 'showPost',             'user' => '0'],
                             "a-propos"                      => ["controller" => 'FrontEnd', 'method' => 'showAbout',            'user' => '0'],
-                            "contact"                       => ["controller" => 'FrontEnd', 'method' => 'showContact',          'user' => '0'],
                             "404"                           => ["controller" => 'FrontEnd', 'method' => 'show404',              'user' => '0'],
                             "modifier-supprimer-chapitres"  => ["controller" => 'FrontEnd', 'method' => 'showAdminEditDel',     'user' => '1'],
                             "gerer-commentaires"            => ["controller" => 'FrontEnd', 'method' => 'showAdminComments',    'user' => '1'],
@@ -31,6 +30,7 @@ class Routeur
                             "inscription"                   => ["controller" => 'BackEnd', 'method'  => 'addUser',              'user' => '0'],
                             "connexion"                     => ["controller" => 'BackEnd', 'method'  => 'login',                'user' => '0'],
                             "deconnexion"                   => ["controller" => 'BackEnd', 'method'  => 'disconnect',           'user' => '0'],
+                            "contact"                       => ["controller" => 'BackEnd', 'method' => 'contact',               'user' => '0'],
                         ];
 
     public function __construct($request)

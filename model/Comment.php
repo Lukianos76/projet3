@@ -105,8 +105,4 @@ class Comment
     {
         $this->report = $report;
     }
-
-
-
-
 }

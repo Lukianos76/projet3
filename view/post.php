@@ -25,10 +25,10 @@
         <?php if (isset($_SESSION['id']) && $_SESSION['administrator'] == 1) :?>
         <ul class="col nav edit-nav justify-content-end">
             <li class="nav-item">
-                 <a class="nav-link" href="<?= HOST?>delete-post/id/<?= $post->getId()?>"><i class="fas fa-trash-alt"></i></span></a>
+                 <a class="nav-link" href="<?= HOST?>supprimer-chapitre/id/<?= $post->getId()?>"><i class="fas fa-trash-alt"></i></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= HOST?>edit-post/id/<?= $post->getId()?>"><i class="fas fa-pencil-alt"></i></a>
+                <a class="nav-link" href="<?= HOST?>modifier-chapitre/id/<?= $post->getId()?>"><i class="fas fa-pencil-alt"></i></a>
             </li>
         </ul>
         <?php endif ?>
@@ -57,7 +57,7 @@
                     <div class="form-group">
                         <label for="passwordInput">Mot de passe :</label>
                         <input class="form-control" id="passwordInput" placeholder="Mot de passe" type="password" name="values[password]" value="">
-                    <p><?= isset($errorMessage) ? "<p class=\"alert alert-danger\" role=\"alert\">".$errorMessage."</p>" : "" ?></p>
+                    <?= isset($errorMessage) ? "<p class=\"alert alert-danger\" role=\"alert\">".$errorMessage."</p>" : "" ?>
                     </div>
                     <button type="submit" class="btn btn-primary">Connexion</button>
                 </form>
@@ -91,24 +91,6 @@
             <?php else : ?>
                 <p>Aucun commentaire</p>
             <?php endif ?>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
