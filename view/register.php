@@ -32,9 +32,6 @@
                     <label for="emailInput">Adresse email</label>
                     <input class="form-control" id="emailInput" type="text" name="values[email]" value="">
                 </div>
-                <div id="text-xs-center">
-                    <div class="g-recaptcha centered" data-sitekey="6Ld1j3oUAAAAAJ8aQW9Giff7L6kiUffjn9SXwnWl"></div>
-                </div>
                 <p><?= isset($errorMessage) ? "<p class=\"alert alert-danger\" role=\"alert\">".$errorMessage."</p>" : "" ?></p>
                 <button type="submit" class="btn btn-primary">S'inscrire</button>
             </form>

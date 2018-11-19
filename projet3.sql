@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 05 nov. 2018 à 21:24
+-- Généré le :  Dim 18 nov. 2018 à 12:20
 -- Version du serveur :  5.7.19
--- Version de PHP :  5.6.31
+-- Version de PHP :  7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `projet3_posts` (
   `content` text NOT NULL,
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `projet3_posts`
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `projet3_users` (
   `administrator` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `pseudo` (`pseudo`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `projet3_users`
@@ -136,7 +136,8 @@ INSERT INTO `projet3_users` (`id`, `pseudo`, `password`, `email`, `register_date
 (4, 'JeanForteroche', '$2y$10$pJ/Jc3CycE8OP5g3aQ02GenqXFMPgq8U1EU/iuAtDUQbZJjMea22e', 'jean.forteroche@gmail.com', '2018-10-24 13:02:02', 1),
 (13, 'Luke', '$2y$10$krts.F.0fAhBaphfidAXVOwsRMGSZe4oSWTWh14vIBlW.R4pCHo8a', 'luke@gmail.com', '2018-10-29 17:55:41', 0),
 (14, 'Aurelie', '$2y$10$bX8X8eAnWc3S5Ldw2BCVh.0jbiJUnjHYeu8pS8Z0JyX5K0H3rD6eG', 'aurelie@gmail.com', '2018-10-29 17:57:55', 0),
-(15, 'Nicole', '$2y$10$GghrosqmyIP2NxaZ58gX1eOUKtJFtwUR1A5PqkXXDK8FcY8fkNr4u', 'nicole@gmail.com', '2018-10-29 17:58:22', 0);
+(15, 'Nicole', '$2y$10$GghrosqmyIP2NxaZ58gX1eOUKtJFtwUR1A5PqkXXDK8FcY8fkNr4u', 'nicole@gmail.com', '2018-10-29 17:58:22', 0),
+(16, 'Test', '$2y$10$RM6UmTRtKN2qqT/onxB4M.Kbr2mhbNdK470lGCXOK4XyorXp2q.XC', 'test@gmail.com', '2018-11-05 23:03:58', 0);
 
 --
 -- Contraintes pour les tables déchargées

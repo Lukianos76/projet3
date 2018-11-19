@@ -235,7 +235,7 @@ class BackEnd
                 $name = htmlspecialchars($values['name']);
                 $message = htmlspecialchars($values['message']);
                 $email = htmlspecialchars($values['email']);
-                if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail))
+                if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $email))
                 {
                     $passage_ligne = "\r\n";
                 }

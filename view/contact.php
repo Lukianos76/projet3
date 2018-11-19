@@ -37,9 +37,6 @@
                         <textarea class="form-control" id="contactMessage" name="values[message]" rows="10" ></textarea>
                     </div>
                 </div>
-                <div class="text-xs-center">
-                    <div class="g-recaptcha" data-sitekey="6LfwjXoUAAAAACOslFtNXrLVcJ0VuAGqeX6pDInr"></div>
-                </div>
                 <?= isset($errorMessage) ? "<p class=\"alert alert-danger\" role=\"alert\">".$errorMessage."</p>" : "" ?>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Envoyer</button>
